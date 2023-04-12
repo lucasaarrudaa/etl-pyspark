@@ -101,9 +101,6 @@ class ExtractorS3:
         
         return json_df
 
-
-
-
 class Extractor:
     '''
     Extract archive from local to df.
