@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StringType
+from pyspark.sql.types import StringType, IntegerType, FloatType, TimestampType
 from pyspark.sql.functions import col
 from pyspark.sql.functions import expr
 
@@ -14,22 +14,22 @@ class Transformer:
         '''
         try:
             self.spark.log.info("Converting column types...")
-            dtypes = {'campaign_date': StringType(),
+            dtypes = {'campaign_date': TimestampType(),
                       'campaign_name': StringType(),
-                      'impressions': StringType(),
+                      'impressions': IntegerType(),
                       'clicks': StringType(),
-                      'cost': StringType(),
+                      'cost': FloatType(),
                       'advertising': StringType(),
                       'ip': StringType(),
                       'device_id': StringType(),
                       'campaign_link': StringType(),
-                      'data_click': StringType(),
+                      'data_click': TimestampType(),
                       'lead_id': StringType(),
-                      'registered_at': StringType(),
+                      'registered_at': TimestampType(),
                       'credit_decision': StringType(),
-                      'credit_decision_at': StringType(),
-                      'signed_at': StringType(),
-                      'revenue': StringType()}
+                      'credit_decision_at': TimestampType(),
+                      'signed_at': TimestampType(),
+                      'revenue': FloatType()}
             dt = df.astype(dtypes)
             self.spark.log.info("Column types converted successfully.")
             return dt
