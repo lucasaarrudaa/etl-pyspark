@@ -1,18 +1,11 @@
 # ETL Application for Data Integration 
 ## Status: WORKING
 
-This is a simple Python ETL (Extract, Transform, Load) application that transfers data from Amazon S3 to a PostgreSQL database. The project aims to integrate four different datasets, including two CSV files, one JSON file, and one XML file, and prepare an analytical database or table for the digital marketing team to perform queries and answer business questions.
+This is a simple PySpark ETL (Extract, Transform, Load) application that transfers data from Amazon S3 to a PostgreSQL database. The project aims to integrate four different datasets, including two CSV files, one JSON file, and one XML file, and prepare an analytical database or table for the digital marketing team to perform queries and answer business questions.
 
 ## Installation
-To install the required dependencies, please use the following command using pip, the Python package manager:
+run venv.sh to create docker container and install requirements
 
-pip install -r requirements.txt
-Note: It is strongly recommended to use a virtual environment to configure your development environment.
-
-
-## Usage
-To run the ETL process, execute the following command:
-python main.py
 Please make sure to set up all the required dependencies, such as PostgreSQL and MySQL Workbench, in order to ensure the proper functioning of the application.
 
 ## Objective
