@@ -6,7 +6,7 @@ This is a simple PySpark ETL (Extract, Transform, Load) application that transfe
 ## Installation
 run venv.sh to create docker container and install requirements
 
-Please make sure to set up all the required dependencies, such as PostgreSQL and MySQL Workbench, in order to ensure the proper functioning of the application.
+Please make sure to set up all the required dependencies, such as PostgreSQL, in order to ensure the proper functioning of the application.
 
 ## Objective
 The main objective of this project is to integrate different datasets and create an analytical table that can be used to answer business questions for the digital marketing team.
