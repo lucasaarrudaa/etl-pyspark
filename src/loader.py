@@ -4,8 +4,9 @@ from pyspark.sql import SparkSession
 from pyspark.sql import Row
 from pyspark.sql.types import StructType, StructField, StringType
 
+
 class Loader:
-    
+
     def __init__(self):
         self.host = 'localhost'
         self.port = 15432
@@ -20,7 +21,7 @@ class Loader:
         self.logger = logging.getLogger(__name__)
 
     def connect(self):
-        
+
         self.conn = psycopg2.connect(
             host=self.host,
             port=self.port,
@@ -30,21 +31,18 @@ class Loader:
         )
         self.cursor = self.conn.cursor()
         self.logger.info("Connected to database.")
-        
+
     def upload_dataframe(self, dataframe):
-        
+
         self.logger.info('Starting upload...')
-        
-        # Convert the DataFrame to a list of rows
+
         rows = [Row(*row) for row in dataframe.rdd.collect()]
-        
-        # Define o schema para o DataFrame
-        schema = StructType([StructField(str(col), StringType(), True) for col in dataframe.columns])
-        
-        # Create a Spark DataFrame from the row list and schema
+
+        schema = StructType([StructField(str(col), StringType(), True)
+                            for col in dataframe.columns])
+
         df = self.spark.createDataFrame(rows, schema=schema)
-        
-        # Write the DataFrame in PostgreSQL
+
         df.write.jdbc(
             url=f"jdbc:postgresql://{self.host}:{self.port}/{self.dbname}",
             table=self.table_name,
@@ -54,11 +52,11 @@ class Loader:
                 'password': self.password
             }
         )
-        
+
         self.logger.info("Upload successful!")
-        
+
     def disconnect(self):
-        
+
         self.cursor.close()
         self.conn.close()
         self.logger.info("Disconnected from database.")
