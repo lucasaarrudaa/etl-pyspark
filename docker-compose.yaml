@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  pyspark:
+    build: .
+    container_name: pyspark
+    volumes:
+      - ./data:/app/data # optional: mount a volume for data
+    ports:
+      - "8888:8888" # optional: expose port of Jupyter Notebook
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypassword 
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data #optional: mount a volume for data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: lucas@email.com
+      PGADMIN_DEFAULT_PASSWORD: mypassword 
+    ports:
+      - "5050:80" 
